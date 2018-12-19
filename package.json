@@ -1,0 +1,22 @@
+{
+  "name": "umi_base_config",
+  "version": "0.0.4",
+  "description": "umi_base_config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasLiu/umi_base_config.git"
+  },
+  "keywords": [
+    "umi"
+  ],
+  "author": "Thomas Lau (thomas_0836@qq.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomasLiu/umi_base_config/issues"
+  },
+  "homepage": "https://github.com/ThomasLiu/umi_base_config#readme"
+}
