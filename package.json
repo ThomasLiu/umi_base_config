@@ -1,6 +1,6 @@
 {
   "name": "umi_base_config",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "umi_base_config",
   "main": "index.js",
   "scripts": {

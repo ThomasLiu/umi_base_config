@@ -1,4 +1,4 @@
-const os = require('os');
+'use strict';
 
 module.exports = {
   // add for transfer to umi
@@ -17,20 +17,11 @@ module.exports = {
           loadingComponent: './components/PageLoading/index',
         },
         history: 'hash',
-        ...(!process.env.TEST && os.platform() === 'darwin'
-          ? {
-              dll: {
-                include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
-                exclude: ['@babel/runtime'],
-              },
-              hardSource: true,
-            }
-          : {}),
       },
     ],
-    
+
     // google 分析
-    // [ 
+    // [
     //   'umi-plugin-ga',
     //   {
     //     code: 'UA-72788897-6',
@@ -43,9 +34,9 @@ module.exports = {
   },
   proxy: {
     '/api/v1': {
-      target: "http://127.0.0.1:7101",
+      target: 'http://127.0.0.1:7101',
       changeOrigin: true,
-      pathRewrite: { "^/api/v1": "/api/v1" }
+      pathRewrite: { '^/api/v1': '/api/v1' },
     },
   },
   define: {
@@ -58,8 +49,8 @@ module.exports = {
   // externals: {
   //   '@antv/data-set': 'DataSet',
   // },
-  
-  ignoreMomentLocale: true,  // 忽略 moment 的 locale 文件，用于减少尺寸。
+
+  ignoreMomentLocale: true, // 忽略 moment 的 locale 文件，用于减少尺寸。
   lessLoaderOptions: {
     javascriptEnabled: true,
   },
@@ -102,15 +93,13 @@ module.exports = {
   },
   extraBabelPlugins: [
     [
-      "import", {
+      'import', {
         libraryName: 'u_webant',
         libraryDirectory: 'lib',
         style: true,
         camel2DashComponentName: false,
-      }
-    ]
-  ]
-}
-
-
+      },
+    ],
+  ],
+};
 
