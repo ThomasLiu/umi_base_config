@@ -1,5 +1,9 @@
 'use strict';
 
+// https://umijs.org/config/
+// import pageRoutes from './router.config';
+// import config from 'umi_base_config';
+
 module.exports = {
   // add for transfer to umi
   plugins: [
@@ -8,30 +12,28 @@ module.exports = {
       {
         antd: true,
         dva: {
-          hmr: true,
-        },
-        targets: {
-          ie: 11,
+          immer: true,
         },
         dynamicImport: {
+          webpackChunkName: true,
           loadingComponent: './components/PageLoading/index',
         },
-        history: 'hash',
+        dll: {
+          include: [ 'dva', 'dva/router', 'dva/saga', 'dva/fetch', 'antd/es' ],
+          exclude: [ '@babel/runtime' ],
+        },
+        hardSource: true,
       },
     ],
 
-    // google 分析
-    // [
-    //   'umi-plugin-ga',
-    //   {
-    //     code: 'UA-72788897-6',
-    //     judge: () => process.env.APP_TYPE === 'site',
-    //   },
-    // ],
   ],
+  autoprefixer: { flexbox: true },
+  es5ImcompatibleVersions: true,
+  treeShaking: true,
   targets: {
-    ie: 11,
+    ie: 9,
   },
+
   proxy: {
     '/api/v1': {
       target: 'http://127.0.0.1:7101',
@@ -42,41 +44,14 @@ module.exports = {
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
   },
-  // 路由配置
-  // routes: pageRoutes,
 
-  // G2 图表时使用 http://antv.alipay.com/zh-cn/g2/3.x/tutorial/data-set.html
-  // externals: {
-  //   '@antv/data-set': 'DataSet',
-  // },
 
   ignoreMomentLocale: true, // 忽略 moment 的 locale 文件，用于减少尺寸。
   lessLoaderOptions: {
     javascriptEnabled: true,
   },
   disableRedirectHoist: true,
-  // cssLoaderOptions: {
-  //   modules: true,
-  //   getLocalIdent: (context, localIdentName, localName) => {
-  //     if (
-  //       context.resourcePath.includes('node_modules') ||
-  //       context.resourcePath.includes('ant.design.pro.less') ||
-  //       context.resourcePath.includes('global.less')
-  //     ) {
-  //       return localName;
-  //     }
-  //     const match = context.resourcePath.match(/src(.*)/);
-  //     if (match && match[1]) {
-  //       const antdProPath = match[1].replace('.less', '');
-  //       const arr = antdProPath
-  //         .split('/')
-  //         .map(a => a.replace(/([A-Z])/g, '-$1'))
-  //         .map(a => a.toLowerCase());
-  //       return `antd-pro${arr.join('-')}-${localName}`.replace(/--/g, '-');
-  //     }
-  //     return localName;
-  //   },
-  // },
+
 
   cssnano: {
     mergeRules: false,
@@ -102,4 +77,3 @@ module.exports = {
     ],
   ],
 };
-
